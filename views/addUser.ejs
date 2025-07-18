@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New User</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+  <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4">Add User</h1>
+
+    <form action="/adminadd" method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium">Username</label>
+        <input type="text" name="name" required class="w-full border p-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Email</label>
+        <input type="email" name="email" required class="w-full border p-2 rounded" />
+      </div>
+
+      <!-- <div>
+        <label class="block font-medium">Age</label>
+        <input type="number" name="age" required class="w-full border p-2 rounded" />
+      </div> -->
+
+      <div>
+        <label class="block font-medium">Password</label>
+        <input type="password" name="password" required class="w-full border p-2 rounded" />
+      </div>
+
+      <div class="flex justify-between">
+        <a href="/show" class="text-blue-500 hover:underline">Back to Dashboard</a>
+        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

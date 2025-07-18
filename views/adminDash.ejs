@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-8">
+    <div class="w-full bg-white p-6 rounded shadow">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+        <div>
+          <a
+            href="/addUser"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >Add Product</a
+          >
+          <a
+            href="/addUser"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >Add User</a
+          >
+          <a
+            href="/logout"
+            class="bg-red-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >Log Out</a
+          >
+        </div>
+      </div>
+
+      <h1>User List</h1>
+      <table class="w-full border text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-2 border">Username</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Password</th>
+            <th class="p-2 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users.length === 0) { %>
+          <tr>
+            <td colspan="4" class="text-center p-4">No users added yet.</td>
+          </tr>
+          <% } else { %> <% users.forEach(user => { %>
+          <tr class="border-b text-center">
+            <td class="p-2 border"><%= user.name %></td>
+            <td class="p-2 border"><%= user.email %></td>
+            <td class="p-2 border"><%= user.password %></td>
+            <td class="p-2 border flex space-x-2 justify-center px-5">
+              <!-- Modify Button -->
+              <form action="/edit/<%= user._id%>">
+                <button
+                  class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"
+                >
+                  Modify
+                </button>
+              </form>
+
+              <!-- Delete Button -->
+              <form action="/del/<%= user._id %>" method="GET">
+                <button
+                  class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
+                >
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }); %> <% } %>
+        </tbody>
+      </table>
+
+      <h1>Product List</h1>
+      <table class="w-full border text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-2 border">Username</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Password</th>
+            <th class="p-2 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users.length === 0) { %>
+          <tr>
+            <td colspan="4" class="text-center p-4">No users added yet.</td>
+          </tr>
+          <% } else { %> <% users.forEach(user => { %>
+          <tr class="border-b text-center">
+            <td class="p-2 border"><%= user.name %></td>
+            <td class="p-2 border"><%= user.email %></td>
+            <td class="p-2 border"><%= user.password %></td>
+            <td class="p-2 border flex space-x-2 justify-center px-5">
+              <!-- Modify Button -->
+              <form action="/edit/<%= user._id%>">
+                <button
+                  class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"
+                >
+                  Modify
+                </button>
+              </form>
+
+              <!-- Delete Button -->
+              <form action="/del/<%= user._id %>" method="GET">
+                <button
+                  class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
+                >
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }); %> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Product</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+  <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-xl font-bold mb-4">Edit Product</h1>
+    <form action="/edit/<%= user._id %>" method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium">Name</label>
+        <input type="text" name="name" value="<%= user.name%>" required class="w-full border p-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Price</label>
+        <input type="price" name="price" value="<%= user.email%>" required class="w-full border p-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Description</label>
+        <input type="description" name="description" value="<%= user.password%>" required class="w-full border p-2 rounded" />
+      </div>
+
+      <div class="flex justify-between">
+        <a href="/show" class="text-blue-500 hover:underline">Back to Dashboard</a>
+        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Add User</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
