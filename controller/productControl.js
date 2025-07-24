@@ -1,34 +1,54 @@
 import prodDet from "../models/products.js";
-import { ObjectId } from "mongodb";
-
-const insert = async (req, res) => {
-    const prodInsert = await prodDet.insertMany(req.body);
-    res.send(prodInsert)
-};
-
-const find = async (req, res) => {
-  const prodInsert = await prodDet.find();
-  res.send(prodInsert);
-};
 
 
-const update = async (req, res) => {
-  const prodId = new ObjectId(req.params.id);
-  const data = req.body;
-  const prodUp = await prodDet.updateOne(
-      { _id: prodId },
-      { $set: data }
-    );
-  res.send(prodUp);
-};
 
-const erase = async (req, res) => {
-    const prodId = new ObjectId(req.params.prodId);
-    const prodDel = await prodDet.deleteOne({_id: prodId});
-    res.send(prodDel)
+
+// render addProd.ejs
+const addprod = async (req, res) => {
+        res.render('addProd')
 }
 
-export { insert };
-export { find };
-export { update };
-export { erase };
+
+// render adminDash.ejs & show the added prod in the dashboard
+const showProd = async (req, res) => {
+    const prods = await prodDet.find(req.body)        
+    res.render('adminDash', { prods })
+}
+
+// render modifyUser.ejs & display the existing data
+const modifyprod = async (req, res) => {
+    const prod = await prodDet.findById(req.params.id)
+    res.render('modifyProd', { prod })
+}
+
+
+
+// add product by admin
+const adminAddProd = async (req, res) => {
+    const prod = await prodDet.insertOne(req.body)
+    res.redirect('/show');
+}; 
+
+// delete product
+const delProd = async (req, res) => {
+    const prodId = req.params.id
+    const prodDel = await prodDet.findByIdAndDelete( prodId );
+    res.redirect('/show')
+}
+
+// add the details & update the edited product in the dashboard
+const editProd = async (req, res) => {
+    const edit = req.params.id;
+    const ed = await prodDet.findByIdAndUpdate( edit, req.body );
+    res.redirect('/show');
+};
+
+
+export { addprod }
+export { modifyprod }
+
+export { adminAddProd };
+export { showProd };
+export { delProd };
+export { editProd };
+

@@ -2,18 +2,28 @@ import mongoose from "mongoose";
 const user = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   password: { 
     type: String,
-     required: true
-     }
+    required: true
+  },
+  role: {
+    type: String,
+    default: 'Disable'
+  },
+  status: {
+    type: String, 
+    enum: ['Active', 'Inactive'],
+    default: 'Active'
+  }
 });
+
 
 const useVar = mongoose.model("userInfo", user);
 
